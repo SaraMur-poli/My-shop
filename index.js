@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const connectDB = require('./db');
 const session = require('express-session');
+const User = require('./models/userModel');
+const Product = require('./models/productModel');
 
 const app = express();
 
@@ -18,3 +20,12 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }));
+
+var user = require('./routers/user');
+app.use('/user', user)
+
+var product = require('./routers/product');
+app.use('/product', product)
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
