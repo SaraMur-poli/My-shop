@@ -63,10 +63,13 @@ const editProduct = async (req, res) => {
       product.category = categoryUpdate;
       product.stock = stockUpdate;
 
+      const lowStockProducts = await productModel.find({ stock: { $lte: 5 } });
       await product.save(); // Guardar los cambios
+      ;
 
       return res.status(200).json({
-          message: 'Product updated successfully'
+          message: 'Product updated successfully',
+          lowStockProducts,
       });
   } catch (error) {
       console.error(error);
@@ -94,10 +97,23 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+const getLowStockProducts = async (req, res) => {
+  try {
+      const products = await productModel.find({ stock: { $lte: 5 } });
+      res.status(200).json(products);
+      console.log(products); 
+  } catch (error) {
+      console.error('Error fetching low-stock products:', error);
+      res.status(500).json({ error: 'Error fetching low-stock products' });
+  }
+};
+
+
 module.exports = {
     register,
     showProducts,
     getProduct,
     editProduct,
-    deleteProduct
+    deleteProduct,
+    getLowStockProducts
 };

@@ -101,13 +101,11 @@ document.getElementById('productRegister').addEventListener('submit', async func
 });
 
 const updateProductModal = new bootstrap.Modal(document.getElementById('updateProductModal'));
-// Mostrar modal y cargar datos del producto para actualizar
 document.addEventListener('click', async function (e) {
     if (e.target && e.target.classList.contains('btnUpdate')) {
         const row = e.target.closest('tr');
         const productId = row.getAttribute('data-id');
 
-        // Realiza una solicitud GET para obtener los datos del producto
         const response = await fetch(`/product/getProduct/${productId}`);
         if (!response.ok) {
             alert('Error fetching product data');
@@ -117,20 +115,18 @@ document.addEventListener('click', async function (e) {
         const productData = await response.json();
         console.log('Fetched product data:', productData);
 
-        // Prellenar los campos del modal con los datos del producto
         document.getElementById('idUpdate').value = productData._id;
         document.getElementById('nameUpdate').value = productData.name;
         document.getElementById('priceUpdate').value = productData.price;
         document.getElementById('categoryUpdate').value = productData.category;
         document.getElementById('stockUpdate').value = productData.stock;
 
-        // Mostrar el modal de actualización
         
         updateProductModal.show();
     }
 });
 
-// Enviar los datos actualizados al backend cuando el formulario es enviado
+
 document.getElementById('updatePoductForm').addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -140,7 +136,7 @@ document.getElementById('updatePoductForm').addEventListener('submit', async fun
     const categoryUpdate = document.getElementById('categoryUpdate').value;
     const stockUpdate = document.getElementById('stockUpdate').value;
 
-    // Validación simple
+    
     const warnings = document.getElementById('warnings2');
     const valid = document.getElementById('valid2');
     warnings.innerHTML = "";
@@ -151,7 +147,6 @@ document.getElementById('updatePoductForm').addEventListener('submit', async fun
         return;
     }
 
-    // Enviar los datos actualizados al servidor
     const response = await fetch('/product/editProduct', {
         method: 'POST',
         headers: {
@@ -174,7 +169,7 @@ document.getElementById('updatePoductForm').addEventListener('submit', async fun
         setTimeout(() => {
             valid.innerHTML = "";
             updateProductModal.hide();
-            location.reload(); // Recargar la página para mostrar los datos actualizados
+            location.reload(); 
         }, 2000);
     }
 });
@@ -208,3 +203,39 @@ document.querySelector('#tableProducts').addEventListener('click', async functio
         }
     }
 });
+
+
+async function fetchLowStockProducts() {
+    try {
+        const response = await fetch('/product/lowStock');
+        const products = await response.json();
+        displayLowStockAlert(products);
+    } catch (error) {
+        console.error('Error fetching low-stock products:', error);
+    }
+}
+
+function displayLowStockAlert(products) {
+    const alertContainer = document.getElementById('lowStockAlert');
+    alertContainer.innerHTML = '';
+
+    if (products.length > 0) {
+        products.forEach(product => {
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-warning';
+            alert.innerHTML = `
+                <strong>Low Stock!</strong> ${product.name} only has ${product.stock} left.
+            `;
+            alertContainer.appendChild(alert);
+        });
+    } else {
+        alertContainer.innerHTML = `
+            <div class="alert alert-success">
+                <strong>Good!</strong> All products have sufficient stock.
+            </div>
+        `;
+    }
+}
+
+// Llamar al cargar la página
+document.addEventListener('DOMContentLoaded', fetchLowStockProducts);

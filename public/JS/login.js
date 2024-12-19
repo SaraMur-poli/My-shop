@@ -49,7 +49,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     .then(data => {
         if (!data.error) {
             sessionStorage.setItem('user', JSON.stringify(data));
-            window.location.href = 'http://localhost:3000/products';
+            window.location.href = 'http://localhost:3000/product/showProducts';
         } else {
             p.innerHTML = data.error; 
         }

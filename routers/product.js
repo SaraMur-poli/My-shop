@@ -13,7 +13,7 @@ router.post('/editProduct', Controller.editProduct);
 
 router.delete('/deleteProduct/:id', Controller.deleteProduct);
 
-
+router.get('/lowStock', Controller.getLowStockProducts);
 
 
 

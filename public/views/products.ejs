@@ -34,13 +34,14 @@
                   <th>Actions</th>
               </tr>
           </thead>
-          <tbody>
+          <tbody id="productTableBodys">
               <% products.forEach ((product) => { %>
                   <tr data-id="<%= product._id %>">
                       <td><%= product.name %></td>
                       <td><%= product.category %></td>
                       <td><%= product.price %></td>
-                      <td><%= product.stock %></td>
+                      <td class="stock1"><%= product.stock %>
+                      </td>
                       <td>
                           <a type="button" class="btnUpdate btn btn-new bi bi-pencil" ></a> 
                           <a class="btnDelete btn btn-danger bi bi-trash" data-id="<%= product._id %>" ></a> 
@@ -49,6 +50,7 @@
               <% }) %>
           </tbody>
       </table>
+      <div id="lowStockAlert" class="container mt-3"></div>
     </div>
 
 
