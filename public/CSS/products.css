@@ -1,0 +1,121 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+
+.navbar{
+    background-color: #bbb8dd;
+    height: 80px;
+    margin: 0;
+    padding: 0.5rem;
+    position: sticky;
+}
+
+.navbar-brand{
+    font-weight: 500;
+    color: #6766dc;
+    font-size: 24px;
+    transition: 0.3s color;
+}
+
+.loginButton{
+    background-color: #6766dc;
+    color: white;
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: 0.3s background-color;
+}
+
+.loginButton:hover{
+    background-color: #6766dc;
+}
+
+.navbar-toggler{
+    border: none;
+    font-size: 1.25rem;
+}
+
+.navbar-toggler:focus, .btn-close:focus{
+    box-shadow: none;
+    outline: none;
+}
+
+.nav-link{
+    color: #666777;
+    font-weight: 500;
+}
+
+.nav-link:hover, .nav-link.active{
+    color: black;
+}
+
+@media (min-width: 991px){
+    .nav-link::before{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 2px;
+        background-color: #6766dc;
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+    
+    .nav-link:hover::before, .nav-link.active::before{
+        width: 100%;
+        visibility: visible;
+    }
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin-top: 2%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .container {
+        width: 100%; 
+        max-width: 100%;
+        padding: 15px; 
+    }
+}
+
+h1 {
+    text-align: center;
+    color: #6766dc;
+  }
+
+.btn-new{
+    background-color: #6766dc;
+    color: white;
+}
+
+.btn-new:hover{
+    background-color: #5a58be;
+    color: white;
+}
+  
+
+.headline{
+    margin: 2%;
+    color: #6766dc;
+}
+
+.required-asterisk {
+    color: red;
+    margin-left: 2px;
+}

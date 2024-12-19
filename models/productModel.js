@@ -7,4 +7,4 @@ const productSchema = new mongoose.Schema({
     stock: { type: String, required: true, unique: true }
 });
 
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.model('Product', productSchema)

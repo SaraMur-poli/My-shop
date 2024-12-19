@@ -4,6 +4,7 @@ const connectDB = require('./db');
 const session = require('express-session');
 const User = require('./models/userModel');
 const Product = require('./models/productModel');
+const path = require('path');  
 
 const app = express();
 
@@ -20,6 +21,10 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }));
+
+app.set('views', path.join(__dirname, 'public', 'views'));
+app.set('view engine', 'ejs');
+
 
 var user = require('./routers/user');
 app.use('/user', user)

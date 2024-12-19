@@ -1,0 +1,51 @@
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background: white;
+}
+
+.box-area{
+    width: 830px;
+}
+
+.rigth-box{
+    padding: 40px 30px 40px 40px;
+}
+
+::placeholder{
+    font-size: 16px;
+}
+
+@media only screen and (max-width: 768px){
+    .box-area{
+        margin: 0 10px;
+    }
+
+    .left-box{
+        height: 100px;
+        overflow: hidden;
+    }
+
+    .rigth-box{
+        padding: 20px;
+    }
+}
+
+.btn-new{
+    background-color: #6766dc;
+    color: white;
+}
+
+.btn-new:hover{
+    background-color: #5a58be;
+    color: white;
+}
+
+.headline{
+    margin: 2%;
+    color: #6766dc;
+}
+
+.required-asterisk {
+    color: red;
+    margin-left: 2px;
+}
